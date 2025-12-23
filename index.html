@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AK Shipping Company</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#0d1b2a;color:#f1faee;scroll-behavior:smooth;}
+a{text-decoration:none;color:inherit;}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 50px;background:#0d1b2a;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,0.5);}
+header .logo{font-size:28px;font-weight:700;color:#e63946;cursor:pointer;}
+nav a{margin-left:30px;font-weight:500;transition:0.3s;}
+nav a:hover{color:#e63946;transform:scale(1.05);}
+.hamburger{display:none;cursor:pointer;flex-direction:column;gap:5px;}
+.hamburger div{width:25px;height:3px;background:#f1faee;}
+@media(max-width:768px){nav{display:none;flex-direction:column;background:#0d1b2a;position:absolute;top:70px;right:0;width:200px;padding:20px;border-left:1px solid #e63946;}nav.active{display:flex;} .hamburger{display:flex;} }
+
+.hero{position:relative;height:90vh;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;}
+.hero video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-1;}
+.hero::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(13,27,42,0.5);}
+.hero-content{position:relative;z-index:1;opacity:0;transform:translateY(50px);transition:1s ease;width:90%;max-width:900px;}
+.hero-content h1{font-size:48px;margin-bottom:20px;line-height:1.2;}
+.hero-content p{font-size:20px;margin-bottom:20px;}
+.hero-content button{padding:15px 35px;font-size:18px;border:none;border-radius:5px;background:#e63946;color:#f1faee;cursor:pointer;transition:0.3s;}
+.hero-content button:hover{background:#ff1f46;transform:scale(1.05);}
+
+section{padding:80px 50px;}
+.about{display:flex;align-items:center;flex-wrap:wrap;gap:30px;}
+.about img{flex:1;min-width:300px;max-width:500px;border-radius:10px;opacity:0;transform:translateX(-50px);transition:1s ease;}
+.about .text{flex:1;min-width:300px;opacity:0;transform:translateX(50px);transition:1s ease;}
+.about h2{font-size:32px;margin-bottom:15px;color:#e63946;}
+.about p{font-size:18px;color:#f1faee;}
+
+.services{display:flex;flex-wrap:wrap;gap:30px;justify-content:center;}
+.service{flex:1 1 250px;background:#111f33;padding:30px;border-radius:10px;text-align:center;transition:0.5s;opacity:0;transform:translateY(50px);}
+.service i{font-size:50px;color:#e63946;margin-bottom:15px;animation:iconBounce 2s infinite;}
+@keyframes iconBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.service:hover{transform:translateY(-10px) scale(1.03);box-shadow:0 10px 20px rgba(230,57,70,0.4);}
+.service h3{margin-bottom:10px;font-size:22px;}
+.service p{font-size:16px;color:#f1faee;}
+
+.testimonials{display:flex;flex-wrap:wrap;gap:30px;justify-content:center;}
+.testimonial{flex:1 1 250px;background:#111f33;padding:20px;border-radius:10px;text-align:center;opacity:0;transform:translateY(50px);transition:0.5s;}
+.testimonial img{width:80px;height:80px;border-radius:50%;margin-bottom:10px;}
+.testimonial h3{margin-bottom:5px;color:#e63946;}
+.testimonial p{font-style:italic;color:#f1faee;}
+
+.cta{background:#e63946;color:#f1faee;text-align:center;padding:60px 20px;border-radius:10px;margin:50px 0;opacity:0;transform:translateY(50px);transition:1s ease;}
+.cta button{background:#0d1b2a;color:#e63946;padding:15px 35px;font-size:18px;border:none;border-radius:5px;cursor:pointer;transition:0.3s;}
+.cta button:hover{background:#ff1f46;color:#f1faee;transform:scale(1.05);}
+
+.contact form{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:20px;}
+.contact input,.contact textarea{padding:15px;border:1px solid #e63946;border-radius:5px;font-size:16px;resize:none;background:#0d1b2a;color:#f1faee;}
+.contact button{padding:15px;border:none;background:#e63946;color:#f1faee;font-size:18px;border-radius:5px;cursor:pointer;transition:0.3s;}
+.contact button:hover{background:#ff1f46;transform:scale(1.05);}
+
+footer{background:#0d1b2a;text-align:center;padding:40px 20px;font-size:14px;color:#f1faee;opacity:0;transform:translateY(30px);transition:1s ease;}
+footer a{color:#e63946;text-decoration:none;margin:0 10px;transition:0.3s;}
+footer a:hover{color:#ff1f46;transform:scale(1.05);}
+
+.back-to-top{position:fixed;bottom:30px;right:30px;background:#e63946;color:#f1faee;padding:10px 15px;border-radius:50%;cursor:pointer;display:none;transition:0.3s;}
+.back-to-top:hover{background:#ff1f46;transform:scale(1.1);}
+
+@media(max-width:768px){
+  .about{flex-direction:column;}
+  header{padding:15px 20px;}
+  .hero h1{font-size:32px;}
+  .hero p{font-size:16px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">AK Shipping Company</div>
+  <div class="hamburger" onclick="document.querySelector('nav').classList.toggle('active');">
+    <div></div><div></div><div></div>
+  </div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#about">About Us</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#cta">CTA</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <video autoplay muted loop>
+    <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
+  </video>
+  <div class="hero-content">
+    <h1>Reliable Shipping Solutions, Worldwide</h1>
+    <p>Fast. Safe. Trusted.</p>
+    <button>Get a Quote</button>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="About Image">
+  <div class="text">
+    <h2>About AK Shipping Company</h2>
+    <p>We provide top-notch logistics services worldwide, ensuring your cargo reaches safely and on time. With years of expertise and a commitment to excellence, we are your trusted shipping partner.</p>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="service"><i>🚢</i><h3>Sea Freight</h3><p>Reliable and cost-effective sea shipping solutions.</p></div>
+  <div class="service"><i>✈️</i><h3>Air Freight</h3><p>Fast and secure air shipping services for urgent deliveries.</p></div>
+  <div class="service"><i>📦</i><h3>Logistics</h3><p>Complete logistics solutions from packaging to delivery.</p></div>
+  <div class="service"><i>🔍</i><h3>Tracking</h3><p>Real-time cargo tracking so you’re always updated.</p></div>
+  <div class="service"><i>🏭</i><h3>Warehousing</h3><p>Safe and organized storage solutions for your goods.</p></div>
+  <div class="service"><i>⚡</i><h3>Express Delivery</h3><p>Fast and reliable express delivery services worldwide.</p></div>
+</section>
+
+<section class="testimonials" id="testimonials">
+  <div class="testimonial"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client"><h3>John Doe</h3><p>"Excellent service and timely deliveries. Highly recommended!"</p></div>
+  <div class="testimonial"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client"><h3>Jane Smith</h3><p>"Professional team with great logistics solutions."</p></div>
+  <div class="testimonial"><img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Client"><h3>Michael Lee</h3><p>"Reliable and fast shipping. Will use again."</p></div>
+</section>
+
+<section class="cta" id="cta">
+  <h2>Partner with AK Shipping Company Today</h2>
+  <p>Experience seamless logistics solutions for your business.</p>
+  <button>Contact Us</button>
+</section>
+
+<section class="contact" id="contact">
+  <h2 style="text-align:center; margin-bottom:30px;">Contact Us</h2>
+  <form onsubmit="return validateForm(event)">
+    <input type="text" placeholder="Your Name" id="name" required>
+    <input type="email" placeholder="Your Email" id="email" required>
+    <input type="text" placeholder="Phone (Optional)" id="phone">
+    <textarea rows="5" placeholder="Your Message" id="message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<footer>
+  <p>Follow us: <a href="#">Facebook</a> | <a href="#">Twitter</a> | <a href="#">LinkedIn</a></p>
+  <p>123 Shipping Lane, Dhaka, Bangladesh | info@akshipping.com</p>
+  <p>© 2025 AK Shipping Company. All rights reserved.</p>
+</footer>
+
+<div class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'});">↑</div>
+
+<script>
+// Hamburger toggle
+const hamburger = document.querySelector('.hamburger');
+const nav = document.querySelector('nav');
+hamburger.addEventListener('click',()=>{nav.classList.toggle('active');});
+
+// Scroll animations
+const faders = document.querySelectorAll('.hero-content, .about img, .about .text, .service, .testimonial, .cta, footer');
+const appearOptions = {threshold:0.3};
+const appearOnScroll = new IntersectionObserver(function(entries,observer){
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.style.opacity=1;
+entry.target.style.transform='translateX(0) translateY(0)';
+observer.unobserve(entry.target);
+}
+});
+},appearOptions);
+faders.forEach(fader=>appearOnScroll.observe(fader));
+
+// Hero parallax & back-to-top
+window.addEventListener('scroll',function(){
+const scrolled=window.pageYOffset;
+document.querySelector('.hero').style.backgroundPositionY=-(scrolled*0.3)+'px';
+document.querySelector('.back-to-top').style.display=scrolled>300?'block':'none';
+});
+
+// Form validation
+function validateForm(e){
+e.preventDefault();
+let name=document.getElementById('name').value.trim();
+let email=document.getElementById('email').value.trim();
+let message=document.getElementById('message').value.trim();
+if(!name || !email || !message){alert('Please fill all required fields');return false;}
+alert('Message sent successfully!');
+document.querySelector('form').reset();
+return false;
+}
+</script>
+
+</body>
+</html>
